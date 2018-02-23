@@ -2,6 +2,8 @@ let service = 'test';
 let base = `/${service}/`;
 let path = window.location.pathname.replace(base, '') || 'about';
 
+Vue.prototype.$state = {service, base, path};
+
 let router = new VueRouter(
     {
         base,
@@ -42,7 +44,8 @@ router.beforeEach(async function (to, from, next) {
 
     httpVueLoader.register(Vue, path);
 
-    window.vm && (window.vm.path = path);
+    Vue.prototype.$state.path = path;
+
     next();
 });
 
@@ -90,14 +93,21 @@ Vue.prototype.$request = async function(url, data) {
 
 httpVueLoader.httpRequest = Vue.prototype.$request;
 
+let component = {
+    computed: {
+        location() {
+            return this.$state.path
+        }
+    },
+    data() {
+        return {
+            state: this.$state
+        }
+    }
+};
+
 window.vm = new Vue({
     el: '#app',
-    components: {
-        //'layout': httpVueLoader('layout')
-    },
-    data: {
-        path
-    },
     router: router
 });
 

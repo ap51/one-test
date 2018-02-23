@@ -11,13 +11,14 @@
     <body>
 
         <div id="app">
-            <router-view name="layout" :component="path"></router-view>
+            <router-view name="layout"></router-view>
 <!--
             <layout :component="path"></layout>
 -->
             <router-view name="loader"></router-view>
         </div>
 
+        <script src="js/md5.min.js"></script>
         <script src="js/axios.min.js"></script>
 <!--
         <script src="js/vue.min.js"></script>

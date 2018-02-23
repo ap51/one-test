@@ -29,7 +29,7 @@
 
                 <v-card class="base-layout">
                     <keep-alive>
-                        <component :is="component"></component>
+                        <component :is="location"></component>
                     </keep-alive>
                 </v-card>
 
@@ -64,9 +64,7 @@
 
 <script>
     module.exports = {
-        props: [
-            'component'
-        ],
+        extends: component,
         components: {
             'signin': httpVueLoader('signin')
         },
@@ -89,6 +87,7 @@
         methods: {
             onSignIn(data) {
                 console.log(data);
+                this.signin = false
             }
         }
     }
