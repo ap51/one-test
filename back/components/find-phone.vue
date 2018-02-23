@@ -1,17 +1,29 @@
 <template>
     <div class="layout-view">
-        <h1>Resource not found:</h1>
-        <v-icon color="red darken-2" class="shadow">fas fa-unlink fa-3x</v-icon>
-        <h1>"{{location}}"</h1>
-
-        <v-btn color="red darken-2" flat="flat" @click.stop="reload()">Try again</v-btn>
+        <h1>enter phone number:</h1>
+        <div class="phone">
+            <v-text-field
+                    v-model="number"
+                    label="phone number"
+                    single-line
+                    prepend-icon="fas fa-mobile"
+                    color="blue darken-2"
+                    mask="+# (###) ### - ## - ##"
+                    hint="for example, 79009000101"
+                    :rules="[
+                      () => !!number || 'This field is required',
+                      () => !!number && number.length >= 11 || 'phone number must be at least 11 digits',
+                    ]"
+            ></v-text-field>
+        </div>
+        <v-btn color="blue darken-2" flat="flat" @click.stop="find"><v-icon class="mr-1">fas fa-search</v-icon>find</v-btn>
     </div>
 </template>
 
 <style scoped>
     .layout-view {
         display: flex;
-        justify-content: center;
+        justify-content: start;
         align-items: center;
         overflow: auto;
         height: 100%;
@@ -21,8 +33,11 @@
         flex-direction: column;
     }
 
-    .layout-view p {
+    .phone {
+        width: 20%;
+/*
         width: 50vw;
+*/
     }
 
     .layout-view h1 {
@@ -35,12 +50,17 @@
 <script>
     module.exports = {
         extends: component,
+        data() {
+            return {
+                number: ''
+            }
+        },
         methods: {
-            reload() {
-                window.location.pathname = this.$state.base + this.$state.path;
+            find() {
+                console.log(this.number);
             }
         }
     }
 
-    //# sourceURL=not-found.js
+    //# sourceURL=find-phone.js
 </script>

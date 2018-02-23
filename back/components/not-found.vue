@@ -4,7 +4,7 @@
         <v-icon color="red darken-2" class="shadow">fas fa-unlink fa-3x</v-icon>
         <h1>"{{location}}"</h1>
 
-        <v-btn color="red darken-2" flat="flat" @click.stop="reload()">Try again</v-btn>
+        <v-btn color="blue darken-2" flat="flat" @click.stop="reload()">Try again</v-btn>
     </div>
 </template>
 
@@ -34,20 +34,10 @@
 
 <script>
     module.exports = {
-        props: [
-            'visible'
-        ],
-        data() {
-            return {
-                location: window.location.pathname
-            }
-        },
+        extends: component,
         methods: {
-            cancel() {
-                this.$emit('cancel');
-            },
-            signin() {
-                this.$emit('signin');
+            reload() {
+                window.location.pathname = this.$state.base + this.$state.path;
             }
         }
     }
