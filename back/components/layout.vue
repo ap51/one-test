@@ -25,36 +25,7 @@
 
                 </v-toolbar>
 
-                <signin :visible="signin" @cancel="signin = false"></signin>
-<!--
-                <v-toolbar color="teal darken-4" dark>
-                    &lt;!&ndash;<a><img src="images/logo.png" style="width: 100px; margin-right: 16px; margin-top: 4px"></a>&ndash;&gt;
-                    <v-tabs >
-                        <v-tabs-bar>
-                            <v-tabs-item
-                                    v-for="tab in tabs"
-                                    :key="tab.name"
-                                    :to="tab.to || tab.name"
-                                    icon
-                                    router
-                                    scrollable="false">
-                                {{ tab.name }}
-                            </v-tabs-item>
-                            <v-tabs-slider color="white"></v-tabs-slider>
-                        </v-tabs-bar>
-                    </v-tabs>
-
-
-&lt;!&ndash;
-                    <v-toolbar-items>
-                        <v-btn flat v-if="$state.session.auth" to="profile"><v-icon right class="pr-2">fa-user-circle fa-lg</v-icon>{{$state.session.auth.email}}</v-btn>
-                        <v-btn flat v-if="!$state.session.auth" to="signin"><v-icon class="pr-2">fa-sign-in fa-lg</v-icon>sign in</v-btn>
-                        <v-btn flat v-if="$state.session.auth" to="signout"><v-icon right class="pr-2">fa-sign-out fa-lg</v-icon></v-btn>
-                    </v-toolbar-items>
-&ndash;&gt;
-
-                </v-toolbar>
--->
+                <signin :visible="signin" @cancel="signin = false" @signin="onSignIn"></signin>
 
                 <v-card class="base-layout">
                     <keep-alive>
@@ -113,6 +84,11 @@
                         icon: 'fas fa-mobile'
                     }
                 ]
+            }
+        },
+        methods: {
+            onSignIn(data) {
+                console.log(data);
             }
         }
     }

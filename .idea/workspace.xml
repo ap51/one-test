@@ -24,7 +24,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="not-found.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="not-found.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/back/components/not-found.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
@@ -34,31 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fontawesome.css" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.759/fontawesome.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="2645" column="0" lean-forward="false" selection-start-line="2645" selection-start-column="0" selection-end-line="2645" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fontawesome-all.css" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.987/fontawesome-all.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="2675" column="0" lean-forward="false" selection-start-line="2645" selection-start-column="0" selection-end-line="2675" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="about.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/back/components/about.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-201">
-              <caret line="2" column="37" lean-forward="true" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
+            <state relative-caret-position="20">
+              <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -67,8 +47,8 @@
       <file leaf-file-name="signin.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/back/components/signin.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="53" selection-end-column="9" />
+            <state relative-caret-position="445">
+              <caret line="53" column="43" lean-forward="true" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -77,8 +57,8 @@
       <file leaf-file-name="layout.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/back/components/layout.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="21" column="83" lean-forward="true" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="83" />
+            <state relative-caret-position="-628">
+              <caret line="35" column="4" lean-forward="true" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -89,6 +69,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="275">
               <caret line="23" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="custom.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/back/public/css/custom.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="60" column="18" lean-forward="false" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -108,8 +98,8 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>font-weight: 900;</find>
       <find>../webfonts/</find>
+      <find>font-weight: 900;</find>
     </findStrings>
     <replaceStrings>
       <replace>../css/fonts/</replace>
@@ -123,12 +113,12 @@
       <list>
         <option value="$PROJECT_DIR$/back/server.js" />
         <option value="$PROJECT_DIR$/back/public/index.js" />
-        <option value="$PROJECT_DIR$/back/public/css/custom.css" />
         <option value="$PROJECT_DIR$/back/components/about.vue" />
         <option value="$PROJECT_DIR$/back/public/index.html" />
-        <option value="$PROJECT_DIR$/back/components/layout.vue" />
-        <option value="$PROJECT_DIR$/back/components/signin.vue" />
         <option value="$PROJECT_DIR$/back/components/not-found.vue" />
+        <option value="$PROJECT_DIR$/back/components/signin.vue" />
+        <option value="$PROJECT_DIR$/back/components/layout.vue" />
+        <option value="$PROJECT_DIR$/back/public/css/custom.css" />
       </list>
     </option>
   </component>
@@ -217,12 +207,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1519320233646</updated>
-      <workItem from="1519320234793" duration="16241000" />
+      <workItem from="1519320234793" duration="17787000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16241000" />
+    <option name="totallyTimeSpent" value="17787000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
@@ -294,16 +284,40 @@
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.987/fontawesome-all.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
+        <state relative-caret-position="394">
           <caret line="2675" column="0" lean-forward="false" selection-start-line="2645" selection-start-column="0" selection-end-line="2675" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/back/public/css/custom.css">
+    <entry file="file://$PROJECT_DIR$/back/components/signin.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="445">
+          <caret line="53" column="43" lean-forward="true" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/back/components/layout.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-628">
+          <caret line="35" column="4" lean-forward="true" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/back/components/not-found.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="41" column="50" lean-forward="false" selection-start-line="41" selection-start-column="50" selection-end-line="41" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/back/components/about.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -316,34 +330,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/back/components/layout.vue">
+    <entry file="file://$PROJECT_DIR$/back/public/css/custom.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="21" column="83" lean-forward="true" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/back/components/about.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-201">
-          <caret line="2" column="37" lean-forward="true" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/back/components/signin.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="53" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/back/components/not-found.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="41" column="50" lean-forward="false" selection-start-line="41" selection-start-column="50" selection-end-line="41" selection-end-column="50" />
+        <state relative-caret-position="204">
+          <caret line="60" column="18" lean-forward="false" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="18" />
           <folding />
         </state>
       </provider>

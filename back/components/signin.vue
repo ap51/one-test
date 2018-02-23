@@ -9,10 +9,10 @@
                 <v-container grid-list-md>
                     <v-layout wrap>
                         <v-flex xs12>
-                            <v-text-field label="Email" required prepend-icon="fas fa-at" autofocus color="red darken-2"></v-text-field>
+                            <v-text-field v-model="email" label="Email" required prepend-icon="fas fa-at" autofocus color="red darken-2"></v-text-field>
                         </v-flex>
                         <v-flex xs12>
-                            <v-text-field label="Password" type="password" required prepend-icon="fas fa-key" color="red darken-2"></v-text-field>
+                            <v-text-field v-model="password" label="Password" type="password" required prepend-icon="fas fa-key" color="red darken-2"></v-text-field>
                         </v-flex>
                     </v-layout>
                 </v-container>
@@ -38,6 +38,8 @@
         ],
         data() {
             return {
+                email: '',
+                password: ''
             }
         },
         methods: {
@@ -45,7 +47,11 @@
                 this.$emit('cancel');
             },
             signin() {
-                this.$emit('signin');
+                let data = {
+                    email:this.email,
+                    password:this.password
+                };
+                this.$emit('signin', data);
             }
         }
     }
