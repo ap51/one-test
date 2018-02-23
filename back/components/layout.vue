@@ -11,7 +11,7 @@
                                :key="tab.name"
                                :to="tab.to || tab.name">
 
-                            <v-icon class="mr-1">{{ tab.icon}}</v-icon>
+                            <v-icon class="mr-1 mb-1">{{ tab.icon}}</v-icon>
 
                             {{ tab.name }}
                         </v-tab>
@@ -19,7 +19,7 @@
 
                     <v-toolbar-items>
                         <v-btn flat @click="signin = true">
-                            <v-icon class="mr-1">fas fa-user-circle</v-icon>SIGN IN
+                            <v-icon class="mr-1 mb-1">fas fa-user-circle</v-icon>SIGN IN
                         </v-btn>
                     </v-toolbar-items>
 
@@ -58,7 +58,7 @@
         border: 1px solid #ccc;
     }
     button i, a i {
-        font-size: 20px;
+        font-size: 17px;
     }
 </style>
 
@@ -80,6 +80,11 @@
                         name: 'find phone',
                         to: 'find-phone',
                         icon: 'fas fa-mobile'
+                    },
+                    {
+                        name: 'phones db',
+                        to: 'phones-database',
+                        icon: 'fas fa-database'
                     }
                 ]
             }
