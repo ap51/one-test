@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3fd8e198-96d8-4759-96da-c212a6da35d6" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/back/components/phone-dialog.vue" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/back/components/phones-database.vue" afterPath="$PROJECT_DIR$/back/components/phones-database.vue" />
-      <change beforePath="$PROJECT_DIR$/back/public/index.js" afterPath="$PROJECT_DIR$/back/public/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -241,7 +238,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1519320233646</updated>
-      <workItem from="1519320234793" duration="39343000" />
+      <workItem from="1519320234793" duration="39358000" />
     </task>
     <task id="LOCAL-00001" summary="r">
       <created>1519411315637</created>
@@ -264,11 +261,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519421905875</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="r">
+      <created>1519468850439</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1519468850439</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39343000" />
+    <option name="totallyTimeSpent" value="39358000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
