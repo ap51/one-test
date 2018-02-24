@@ -1,4 +1,5 @@
-let service = 'test';
+//let service = 'test';
+let service = window.location.pathname.split('/')[1] || 'test'
 let base = `/${service}/`;
 let path = window.location.pathname.replace(base, '') || 'about';
 let cache = {};
