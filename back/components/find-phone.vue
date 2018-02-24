@@ -20,8 +20,8 @@
         </div>
 
         <div>
-            <v-btn color="blue darken-2" flat="flat" @click.stop="clear"><v-icon class="mr-1">fas fa-times-circle</v-icon>clear</v-btn>
-            <v-btn color="blue darken-2" flat="flat" @click.stop="find"><v-icon class="mr-1">fas fa-search</v-icon>find</v-btn>
+            <v-btn color="blue darken-2" flat="flat" @click.stop="clear"><v-icon class="mr-1 mb-1">fas fa-times-circle</v-icon>clear</v-btn>
+            <v-btn color="blue darken-2" flat="flat" @click.stop="find"><v-icon class="mr-1 mb-1">fas fa-search</v-icon>find</v-btn>
         </div>
 
         <div>
