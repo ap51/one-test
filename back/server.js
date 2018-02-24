@@ -28,8 +28,8 @@ app.use('/_file_/:name', function (req, res, next){
     });
 });
 
-app.use('/phones', require('./phones').router);
-app.use('/oauth', require('./oauth').router);
+app.use('/phones', require('./services/phones/router'));
+app.use('/provider', require('./services/provider/router'));
 
 httpsServer.listen(httpsListenPort);
-console.log('https servel linten on ${httpsListenPort} port.');
+console.log(`https servel linten on ${httpsListenPort} port.`);
