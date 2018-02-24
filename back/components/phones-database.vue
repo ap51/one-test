@@ -7,6 +7,10 @@
             <v-btn color="green darken-2" flat="flat" @click.stop="append"><v-icon class="mr-1 mb-1">fas fa-plus</v-icon>append phone</v-btn>
         </div>
 
+        <div class="text-xs-center pt-2">
+            <v-pagination v-model="pagination.page" :length="pages" :total-visible="pages"></v-pagination>
+        </div>
+
         <v-data-table
                 :headers="headers"
                 :items="items"
@@ -20,9 +24,10 @@
                 prev-icon="fas fa-chevron-left"
                 sort-icon="fas fa-arrow-up"
                 :pagination.sync="pagination"
+                hide-actions
         >
             <template slot="items" slot-scope="props">
-                <tr @click="edit(props.item)">
+                <tr v-if="props.item.number">
                     <td>
                         <v-checkbox
                             primary
@@ -31,21 +36,26 @@
                             color="blue darken-2"
                         ></v-checkbox>
                     </td>
-                    <td>
+                    <td @click="edit(props.item)">
                         <v-icon class="data-icon pb-1 mr-1">fas fa-mobile</v-icon>
-                        {{ props.item.phone }}
+                        <a>{{ props.item.phone }}</a>
                     </td>
-                    <td>
+                    <td @click="edit(props.item)">
                         <v-icon class="data-icon pb-1 mr-1">fas fa-user</v-icon>
-                        {{ props.item.owner }}
+                        <a>{{ props.item.owner }}</a>
                     </td>
                 </tr>
             </template>
+
+            <template slot="footer">
+                <td colspan="100%">
+                    <strong>total records: {{pagination.totalItems}}</strong>
+                </td>
+            </template>
         </v-data-table>
 
-        <div class="text-xs-center pt-2">
-            <v-pagination v-model="pagination.page" :length="pages" :total-visible="pages"></v-pagination>
-        </div>
+        <phone-dialog :visible="phone.visible" :phone="phone.copy" @save="save" @cancel="cancel"></phone-dialog>
+
     </div>
 </template>
 
@@ -72,18 +82,24 @@
 <script>
     module.exports = {
         extends: component,
+        components: {
+            'phone-dialog': httpVueLoader('phone-dialog')
+        },
         data() {
             return {
-                editedIndex: -1,
-                editedItem: {
-                    name: '',
-                    calories: 0,
-                    fat: 0,
-                    carbs: 0,
-                    protein: 0
+                phone: {
+                    visible: false,
+                    data: {
+                        number: '',
+                        owner: ''
+                    },
+                    copy: {
+                        number: '',
+                        owner: ''
+                    }
                 },
                 pagination: {
-                    rowsPerPage: 10
+                    rowsPerPage: 12
                 },
                 search: '',
                 selected: [],
@@ -402,12 +418,30 @@
         },
         methods: {
             edit(item) {
-                item.number = 79998886622;
-                this.editedIndex = this.items.indexOf(item);
-                this.editedItem = Object.assign({}, item);
+                this.phone.data = item;
+                this.phone.copy = {...item};
+                this.phone.visible = true;
+            },
+            save(item) {
+                this.phone.visible = false;
+                Object.assign(this.phone.data, item);
+/*
+                this.editedIndex = this.items.indexOf(this.phone.data);
+                Object.assign(this.items[this.editedIndex], item)
+*/
+                //this.editedItem = Object.assign({}, item);
+            },
+            cancel() {
+                this.phone.visible = false;
             },
             remove() {
-                console.log(this.pagination)
+                //console.log(this.selected);
+                let self = this;
+                this.selected.forEach(function (item) {
+                    item.number = 0;
+                    //let inx = self.items.indexOf(item);
+                    //self.items.splice(inx, 1);
+                })
             }
         }
     }
