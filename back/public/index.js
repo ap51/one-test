@@ -1,4 +1,4 @@
-//let service = 'test';
+
 let service = window.location.pathname.split('/')[1] || 'test'
 let base = `/${service}/`;
 let path = window.location.pathname.replace(base, '') || 'about';
@@ -19,16 +19,8 @@ let router = new VueRouter(
                 path: '/*',
                 components: {
                     'layout': httpVueLoader('layout'),
-                    //'loader': httpVueLoader('loader'),
                 },
                 props: {
-/*
-                    'loader': function (route) {
-                        return {
-                            visible: Vue.prototype.$state.loading
-                        }
-                    }
-*/
                 },
                 children: [
                     {
@@ -45,11 +37,6 @@ router.beforeEach(async function (to, from, next) {
     let path = to.params.name;
 
     Vue.prototype.$page(path, true);
-/*
-    httpVueLoader.register(Vue, path);
-
-    Vue.prototype.$state.path = path;
-*/
 
     next();
 });
@@ -96,12 +83,6 @@ Vue.prototype.$request = async function(url, data, method) {
         url: url,
         method: data ? method || 'post' : 'get',
         headers: {
-            //'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
-/*
-            'x-session': session || '',
-            'path': JSON.stringify(path)
-*/
         }
     };
 

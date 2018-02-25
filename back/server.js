@@ -16,7 +16,6 @@ const app = express();
 
 let httpsServer = https.createServer(credentials, app);
 
-//test functionality to check service is working
 app.use('/_file_/:name', function (req, res, next){
     fs.readFile(path.join(__dirname, 'file-storage', req.params.name), function (err, content){
         if(err) {
@@ -29,8 +28,6 @@ app.use('/_file_/:name', function (req, res, next){
 });
 
 app.use('/phones', require('./services/phones/router'));
-//app.use('/provider', require('./services/provider/router'));
-//app.use('/oauth', require('./services/oauth/router'));
 
 httpsServer.listen(httpsListenPort);
 console.log(`https servel linten on ${httpsListenPort} port.`);

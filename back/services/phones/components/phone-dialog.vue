@@ -60,11 +60,6 @@
             'visible',
             'phone'
         ],
-/*
-        activated() {
-            this.copy = {...this.phone};
-        },
-*/
         computed: {
             copy: {
                 cache: false,

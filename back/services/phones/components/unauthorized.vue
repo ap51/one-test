@@ -36,13 +36,10 @@
     module.exports = {
         extends: component,
         mounted() {
-            //Vue.prototype.$page('signin');
-            this.$bus.$emit('signin');
         },
         methods: {
             signin() {
                 this.$bus.$emit('signin');
-                //Vue.prototype.$page('signin');
             }
         }
     }

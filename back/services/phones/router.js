@@ -36,10 +36,8 @@ router.use(bodyParser.json());
 let ensureSignedIn = function(req, res, next) {
     if (!req.session.isSignedIn) {
 
-        //req.session.redirect = req.originalUrl || req.url;
-        //req.session.redirect = 'signin';
-        //res.redirect(`/phones/signin`);
         req.session.redirect = 'unauthorized';
+
         return end(req, res);
     }
     else {
@@ -82,292 +80,7 @@ router.post('/signin', function(req, res, next){
     next();
 });
 
-let db = {
-/*
-    phones: [
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-        {
-            number: 89991113344,
-            owner: 'mr. Joe Doe'
-        },
-        {
-            number: 92223334455,
-            owner: 'mr. Joe Black'
-        },
-    ]
-*/
-};
+let db = {};
 
 db.phones = [];
 
@@ -383,12 +96,10 @@ if(!db.phones.length) {
 }
 
 router.all('/find-phone', ensureSignedIn, function(req, res, next){
-    //res.locals.data = {phones: db.phones};
     next();
 });
 
 router.all('/phones-database', ensureSignedIn, function(req, res, next){
-    //res.locals.data = {phones: db.phones};
     next();
 });
 
@@ -405,7 +116,7 @@ router.delete('/phone', ensureSignedIn, function(req, res, next){
     let removed = req.body;
 
     db.phones = db.phones.reduce(function (memo, item) {
-        !removed.find(phone => phone.number === item.number) && memo.push(item);
+        !removed.find(phone => parseInt(phone.number) === parseInt(item.number)) && memo.push(item);
         return memo;
     }, []);
 

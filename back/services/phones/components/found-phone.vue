@@ -2,9 +2,6 @@
     <div class="layout-view pa-1">
         <h1>phone you entered found in database:</h1>
         <v-icon color="green darken-2" class="shadow">fas fa-check-circle fa-3x</v-icon>
-<!--
-        <h1>number: {{phone}}</h1>
--->
 
         <v-data-table
                 :headers="headers"

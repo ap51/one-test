@@ -405,11 +405,14 @@
         },
         computed: {
             items() {
-                return this.entities.phones.map(function(row) {
-                    row.number = row.number + '';
-                    row.phone = row.number.replace(/(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/, '+$1 ($2) $3 - $4 - $5');
-                    return row;
-                });
+                return this.entities.phones.reduce(function(memo, row) {
+                    if(row) {
+                        row.number = row.number + '';
+                        row.phone = row.number.replace(/(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/, '+$1 ($2) $3 - $4 - $5');
+                        memo.push(row);
+                    }
+                    return memo;
+                }, []);
             },
             pages () {
                 if (this.pagination.rowsPerPage == null ||

@@ -45,9 +45,6 @@
 
     .phone {
         width: 25%;
-/*
-        width: 50vw;
-*/
     }
 
     .layout-view h1 {
