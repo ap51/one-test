@@ -54,6 +54,7 @@
                     location: window.location.pathname
                 };
                 //this.$emit('signin', data);
+                cache = {};
                 this.$request('signout', data);
             }
         }

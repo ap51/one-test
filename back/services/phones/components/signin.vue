@@ -7,8 +7,8 @@
             </v-card-title>
             <v-card-text>
                 <v-container grid-list-md>
-                    <v-layout wrap>
-                        <v-form ref="form" lazy-validation @submit.prevent>
+                    <v-layout wrap >
+                        <v-form ref="form" class="form" lazy-validation @submit.prevent>
                             <v-flex xs12>
                                 <v-text-field v-model="email"
                                               label="Email"
@@ -48,15 +48,6 @@
 </template>
 
 <style scoped>
-    .flex {
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .modal {
-
-    }
 </style>
 
 <script>
@@ -76,13 +67,16 @@
                 this.$emit('cancel');
             },
             signin() {
-                let data = {
-                    email: this.email,
-                    password: md5(`${this.email}.${this.password}`),
-                    location: window.location.pathname
-                };
+                if (this.$refs.form.validate()) {
+                    let data = {
+                        email: this.email,
+                        password: md5(`${this.email}.${this.password}`),
+                        location: window.location.pathname
+                    };
 
-                this.$request('signin', data);
+                    this.$request('signin', data);
+                }
+                else this.$bus.$emit('snackbar', 'Data entered doesn\'t match validation rules');
             }
         }
     }
