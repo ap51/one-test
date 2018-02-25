@@ -84,7 +84,7 @@
                 if (this.$refs.form.validate()) {
 
                     let found = this.entities.phones.find(function (phone) {
-                        let match = phone.number === parseInt(self.number);
+                        let match = phone.number === self.number;
                         match && (self.results = phone);
                         return match;
                     });

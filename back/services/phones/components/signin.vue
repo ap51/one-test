@@ -81,7 +81,7 @@
                     password: md5(`${this.email}.${this.password}`),
                     location: window.location.pathname
                 };
-                //this.$emit('signin', data);
+
                 this.$request('signin', data);
             }
         }

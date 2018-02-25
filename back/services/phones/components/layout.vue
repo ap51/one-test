@@ -18,11 +18,13 @@
                     </v-tabs>
 
                     <v-toolbar-items>
+<!--
                         <v-btn v-if="!state.session.auth" flat @click="signin = true">
                             <v-icon class="mr-1 mb-1">fas fa-user-circle</v-icon>SIGN IN
                         </v-btn>
+-->
 
-                        <v-btn v-else flat @click="signout = true">
+                        <v-btn v-if="state.session.auth"  flat @click="signout = true">
                             <v-icon class="mr-1 mb-1">fas fa-sign-out-alt</v-icon>{{state.session.auth}}
                         </v-btn>
 

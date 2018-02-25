@@ -81,6 +81,7 @@
                 if (this.$refs.form.validate()) {
                     this.$emit('save', phone);
                 }
+                else this.$bus.$emit('snackbar', 'Data entered doesn\'t match validation rules');
             }
         }
     }
