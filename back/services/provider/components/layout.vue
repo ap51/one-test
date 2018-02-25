@@ -53,6 +53,7 @@
         methods: {
             onSignIn(data) {
                 console.log(data);
+                this.$request('signin', data);
                 this.signin = false
             }
         }

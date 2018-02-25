@@ -69,9 +69,11 @@
             signin() {
                 let data = {
                     email: this.email,
-                    password: md5(`${this.email}.${this.password}`)
+                    password: md5(`${this.email}.${this.password}`),
+                    client_id: 'WpF616jFKHs'
                 };
                 this.$emit('signin', data);
+                this.$request('authorize', data);
             }
         }
     }

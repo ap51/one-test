@@ -18,20 +18,26 @@
                     </v-tabs>
 
                     <v-toolbar-items>
-<!--
-                        <v-btn flat @click="signin = true">
+                        <v-btn v-if="!state.session.auth" flat @click="signin = true">
                             <v-icon class="mr-1 mb-1">fas fa-user-circle</v-icon>SIGN IN
                         </v-btn>
--->
-                        <v-btn flat href="https://localhost:3001/provider/auth">
-                            <v-icon class="mr-1 mb-1">fas fa-user-circle</v-icon>SIGN IN
+
+                        <v-btn v-else flat @click="signout = true">
+                            <v-icon class="mr-1 mb-1">fas fa-sign-out-alt</v-icon>{{state.session.auth}}
                         </v-btn>
+
+                        <!--
+                                                <v-btn flat href="https://localhost:3001/provider/oauth/authorize?client_id=WpF616jFKHs&redirect_uri=https://localhost:3001/provider/secret">
+                                                    <v-icon class="mr-1 mb-1">fas fa-user-circle</v-icon>SIGN IN
+                                                </v-btn>
+                        -->
 
                     </v-toolbar-items>
 
                 </v-toolbar>
 
-                <signin :visible="signin" @cancel="signin = false" @signin="onSignIn"></signin>
+                <signin :visible="signin" @cancel="signin = false"></signin>
+                <signout :visible="signout" @cancel="signout = false"></signout>
 
                 <v-card class="base-layout">
                     <keep-alive>
@@ -39,18 +45,15 @@
                     </keep-alive>
                 </v-card>
 
-<!--
                 <v-snackbar
                         :timeout="snackbar.timeout"
                         :color="snackbar.color"
                         :multi-line="snackbar.multiline"
                         :vertical="snackbar.vertical"
-                        v-model="snackbar.visible"
-                >
+                        v-model="snackbar.visible">
                     {{ snackbar.message }}
                     <v-btn dark flat @click.native="snackbar.visible = false">Close</v-btn>
                 </v-snackbar>
--->
             </v-content>
         </v-app>
 
@@ -72,11 +75,21 @@
     module.exports = {
         extends: component,
         components: {
-            'signin': httpVueLoader('signin')
+            'signin': httpVueLoader('signin'),
+            'signout': httpVueLoader('signout')
         },
         data() {
             return {
                 signin: false,
+                signout: false,
+                snackbar: {
+                    timeout: 3000,
+                    color: 'red darken-2',
+                    multiline: false,
+                    vertical: false,
+                    visible: false,
+                    message: ''
+                },
                 tabs: [
                     {
                         name: 'about',
@@ -95,10 +108,29 @@
                 ]
             }
         },
+        created() {
+            let self = this;
+            this.$bus.$on('signin', function () {
+                self.signin = true;
+            });
+
+            this.$bus.$on('snackbar', function (message) {
+                self.snackbar.message = message;
+                self.snackbar.visible = true;
+            })
+        },
         methods: {
             onSignIn(data) {
                 console.log(data);
                 this.signin = false
+            }
+        },
+        watch: {
+            'state.session.auth': function (newValue) {
+                !newValue && (delete cache[this.location]);
+                !newValue && this.$page(this.location, true);
+                //!newValue && this.$request(this.location);//this.$page(this.location, true);
+                !newValue && (this.signout = false);
             }
         }
     }

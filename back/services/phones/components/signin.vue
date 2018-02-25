@@ -8,12 +8,32 @@
             <v-card-text>
                 <v-container grid-list-md>
                     <v-layout wrap>
-                        <v-flex xs12>
-                            <v-text-field v-model="email" label="Email" required prepend-icon="fas fa-at" autofocus color="blue darken-2"></v-text-field>
-                        </v-flex>
-                        <v-flex xs12>
-                            <v-text-field v-model="password" label="Password" type="password" required prepend-icon="fas fa-key" color="blue darken-2"></v-text-field>
-                        </v-flex>
+                        <v-form ref="form" lazy-validation @submit.prevent>
+                            <v-flex xs12>
+                                <v-text-field v-model="email"
+                                              label="Email"
+                                              required
+                                              prepend-icon="fas fa-at"
+                                              autofocus
+                                              color="blue darken-2"
+                                              :rules="[
+                                                  () => !!email || 'This field is required',
+                                              ]"
+                                ></v-text-field>
+                            </v-flex>
+                            <v-flex xs12>
+                                <v-text-field v-model="password"
+                                              label="Password"
+                                              type="password"
+                                              required
+                                              prepend-icon="fas fa-key"
+                                              color="blue darken-2"
+                                              :rules="[
+                                                  () => !!password || 'This field is required',
+                                              ]"
+                                ></v-text-field>
+                            </v-flex>
+                        </v-form>
                     </v-layout>
                 </v-container>
                 <small>*indicates required field</small>
@@ -28,11 +48,20 @@
 </template>
 
 <style scoped>
+    .flex {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .modal {
 
+    }
 </style>
 
 <script>
     module.exports = {
+        extends: component,
         props: [
             'visible'
         ],
@@ -49,9 +78,11 @@
             signin() {
                 let data = {
                     email: this.email,
-                    password: md5(`${this.email}.${this.password}`)
+                    password: md5(`${this.email}.${this.password}`),
+                    location: window.location.pathname
                 };
-                this.$emit('signin', data);
+                //this.$emit('signin', data);
+                this.$request('signin', data);
             }
         }
     }

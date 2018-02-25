@@ -4,7 +4,7 @@ let base = `/${service}/`;
 let path = window.location.pathname.replace(base, '') || 'about';
 let cache = {};
 
-Vue.prototype.$state = {service, base, path, };
+Vue.prototype.$state = {service, base, path, entities: {}, session: {}};
 
 let router = new VueRouter(
     {
@@ -44,9 +44,12 @@ let router = new VueRouter(
 router.beforeEach(async function (to, from, next) {
     let path = to.params.name;
 
+    Vue.prototype.$page(path, true);
+/*
     httpVueLoader.register(Vue, path);
 
     Vue.prototype.$state.path = path;
+*/
 
     next();
 });
@@ -70,29 +73,59 @@ axios.interceptors.response.use(
     }
 );
 
-Vue.prototype.$request = async function(url, data) {
-    url = router.options.base + url.replace('/index.vue', '');
+Vue.prototype.$page = function(path, force) {
 
-    let response = cache[url];
+    if(force || Vue.prototype.$state.path !== path) {
+        !cache[path] && httpVueLoader.register(Vue, path);
+        Vue.prototype.$state.path = path;
+    }
+};
+
+Vue.prototype.$bus = new Vue({});
+
+Vue.prototype.$request = async function(url, data, method) {
+    let name = url.replace('/index.vue', '');
+    url = router.options.base + name;
+
+    let response = !data && cache[name];
 
     if(response)
         return response;
 
     let config = {
         url: url,
-        method: data ? 'post' : 'get',
-/*
+        method: data ? method || 'post' : 'get',
         headers: {
+            //'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
+/*
             'x-session': session || '',
             'path': JSON.stringify(path)
-        }
 */
+        }
     };
 
+    data && (config.data = data);
+
     return axios(config)
-        .then(async function(res) {
-            cache[url] = res.data;
-            return res.data;
+        .then(function(res) {
+            res.data.session && Vue.set(Vue.prototype.$state, 'session', res.data.session);
+
+            if(!res.data.error) {
+                if (res.data.redirect) {
+                    let path = res.data.redirect.replace(base, '');
+
+                    Vue.prototype.$page(path);
+
+                    name = path;
+                }
+                cache[name] = res.data.component || cache[name];
+
+                res.data.data && Vue.set(Vue.prototype.$state, 'entities', res.data.data);
+
+                return cache[name];
+            }
+            else Vue.prototype.$bus.$emit('snackbar', res.data.error);
         })
         .catch(function(err) {
             return Promise.reject(err);
@@ -103,6 +136,9 @@ httpVueLoader.httpRequest = Vue.prototype.$request;
 
 let component = {
     computed: {
+        entities() {
+            return this.$state.entities;
+        },
         location() {
             return this.$state.path
         }
@@ -110,6 +146,11 @@ let component = {
     data() {
         return {
             state: this.$state
+        }
+    },
+    watch: {
+        'state.path': function () {
+            this.visible && this.cancel && this.cancel();
         }
     }
 };

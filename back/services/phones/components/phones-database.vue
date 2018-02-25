@@ -27,7 +27,7 @@
                 hide-actions
         >
             <template slot="items" slot-scope="props">
-                <tr v-if="props.item.number">
+                <tr>
                     <td>
                         <v-checkbox
                             primary
@@ -49,7 +49,7 @@
 
             <template slot="footer">
                 <td colspan="100%">
-                    <strong>total records: {{pagination.totalItems}}</strong>
+                    <strong>total records: {{entities.phones.length}}</strong>
                 </td>
             </template>
         </v-data-table>
@@ -89,10 +89,12 @@
             return {
                 phone: {
                     visible: false,
+/*
                     data: {
                         number: '',
                         owner: ''
                     },
+*/
                     copy: {
                         number: '',
                         owner: ''
@@ -115,6 +117,7 @@
                         sortable: false
                     }
                 ],
+/*
                 rows: [
                     {
                         number: 89991113344,
@@ -397,12 +400,14 @@
                         owner: 'mr. Joe Black'
                     },
                 ]
+*/
             }
         },
         computed: {
             items() {
-                return this.rows.map(function(row) {
-                    row.phone = (row.number + '').replace(/(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/, '+$1 ($2) $3 - $4 - $5');
+                return this.entities.phones.map(function(row) {
+                    row.number = row.number + '';
+                    row.phone = row.number.replace(/(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/, '+$1 ($2) $3 - $4 - $5');
                     return row;
                 });
             },
@@ -412,36 +417,36 @@
                 )
                 return 0;
 
-                return Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage)
+                return Math.ceil(this.entities.phones.length / this.pagination.rowsPerPage)
             }
 
         },
         methods: {
+            append() {
+                this.phone.method = 'post';
+
+                this.phone.copy = {
+                    number: '',
+                    owner: 'owner ' + new Date().toLocaleString()
+                };
+
+                this.phone.visible = true;
+            },
             edit(item) {
-                this.phone.data = item;
+                this.phone.method = 'patch';
+
                 this.phone.copy = {...item};
                 this.phone.visible = true;
             },
             save(item) {
                 this.phone.visible = false;
-                Object.assign(this.phone.data, item);
-/*
-                this.editedIndex = this.items.indexOf(this.phone.data);
-                Object.assign(this.items[this.editedIndex], item)
-*/
-                //this.editedItem = Object.assign({}, item);
+                this.$request('phone', item, this.phone.method);
             },
             cancel() {
                 this.phone.visible = false;
             },
             remove() {
-                //console.log(this.selected);
-                let self = this;
-                this.selected.forEach(function (item) {
-                    item.number = 0;
-                    //let inx = self.items.indexOf(item);
-                    //self.items.splice(inx, 1);
-                })
+                this.$request('phone', this.selected, 'delete');
             }
         }
     }

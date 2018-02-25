@@ -2,7 +2,7 @@
     <div class="layout-view">
         <h1>enter phone number:</h1>
         <div class="phone">
-            <v-form ref="form" lazy-validation>
+            <v-form ref="form" lazy-validation @submit.prevent="find">
                 <v-text-field
                         v-model="number"
                         label="phone number"
@@ -74,30 +74,24 @@
         },
         methods: {
             find() {
+                let self = this;
 
                 this.results = {
-                    number: this.number,
-                    owner: 'Mr. Joe Doe'
+                    number: this.number
                 };
 
 
                 if (this.$refs.form.validate()) {
 
-/*
-                    axios.post('/api/submit', {
-                        name: this.name,
-                        email: this.email,
-                        select: this.select,
-                        checkbox: this.checkbox
+                    let found = this.entities.phones.find(function (phone) {
+                        let match = phone.number === parseInt(self.number);
+                        match && (self.results = phone);
+                        return match;
                     });
-*/
 
-                    console.log(this.number);
-
-
-                    this.out = this.number ? 'found-phone' : 'not-found-phone';
+                    this.out = found ? 'found-phone' : 'not-found-phone';
                 }
-                else this.out = this.number ? 'validation-error' : 'not-found-phone';
+                else this.out = 'validation-error';
             },
             clear () {
                 this.$refs.form.reset()

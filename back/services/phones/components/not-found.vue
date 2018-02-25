@@ -37,7 +37,8 @@
         extends: component,
         methods: {
             reload() {
-                window.location.pathname = this.$state.base + this.$state.path;
+                //window.location.pathname = this.$state.base + this.$state.path;
+                this.$page(path);
             }
         }
     }

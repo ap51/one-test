@@ -10,7 +10,7 @@ const key  = fs.readFileSync('ssl/key.pem', 'utf8');
 const cert = fs.readFileSync('ssl/cert.pem', 'utf8');
 const credentials = {key, cert};
 
-const httpsListenPort = 3001;
+const httpsListenPort = 5000;
 
 const app = express();
 
@@ -29,7 +29,8 @@ app.use('/_file_/:name', function (req, res, next){
 });
 
 app.use('/phones', require('./services/phones/router'));
-app.use('/provider', require('./services/provider/router'));
+//app.use('/provider', require('./services/provider/router'));
+//app.use('/oauth', require('./services/oauth/router'));
 
 httpsServer.listen(httpsListenPort);
 console.log(`https servel linten on ${httpsListenPort} port.`);

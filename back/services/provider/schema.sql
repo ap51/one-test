@@ -32,6 +32,14 @@ SET default_with_oids = false;
 -- Name: oauth_tokens; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
+CREATE TABLE oauth_codes (
+    id uuid NOT NULL,
+    authorization_code text NOT NULL,
+    expires_at timestamp without time zone NOT NULL,
+    redirect_uri text NOT NULL,
+    scope text NOT NULL
+);
+
 CREATE TABLE oauth_tokens (
     id uuid NOT NULL,
     access_token text NOT NULL,
@@ -68,6 +76,8 @@ CREATE TABLE users (
 --
 -- Name: oauth_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
+ALTER TABLE ONLY oauth_codes
+    ADD CONSTRAINT oauth_codes_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY oauth_tokens
     ADD CONSTRAINT oauth_tokens_pkey PRIMARY KEY (id);
